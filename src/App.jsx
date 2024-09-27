@@ -1,54 +1,110 @@
 import "./App.css"
+import { useState } from "react";
 
 function App() {
+
+  const [result, setResult] = useState(0)
+  const [number, setNumber] = useState("")
+  const [otherNumber, setOtherNumber] = useState("")
+  const [operation, setOperation] = useState("+")
+
+  const updateNumber = (value) => {
+    if (number === "0") {
+      setNumber(String(value))
+    } else {
+      setNumber((number) => number + value)
+    }
+
+  }
+  const updateOtehrNumber = (value) => {
+    if (otherNumber === "0") {
+      setOtherNumber(String(value))
+    } else {
+      setOtherNumber((otherNumber) => otherNumber + value)
+    }
+  }
+
+  const clearNumber = () => {
+    setNumber("0")
+    setResult(0)
+  }
+
+  const clearOtherNumber = () => {
+    setOtherNumber("0")
+    setResult(0)
+  }
+
+  const addToSum = () => {
+    setResult(Number(number) + Number(otherNumber))
+    setOperation("+")
+  } 
+
+  const subtractSum = () => {
+    setResult(Number(number) - Number(otherNumber))
+    setOperation("-")
+
+  }
+
+  const multiplySum = () => {
+    setResult(Number(number) * Number(otherNumber))
+    setOperation("*")
+
+  }
+
+  const divSum = () => {
+    setResult(Number(number) / Number(otherNumber))
+    setOperation("÷")
+  }
+
+
 
   return (
     <div className="calculator">
       <div className="panel">
-        <p>0</p>
+        <p>{number}</p>
         <div className="numbers">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button>0</button>
-          <button>Clear</button>
+          <button onClick={() => updateNumber(1)}>1</button>
+          <button onClick={() => updateNumber(2)}>2</button>
+          <button onClick={() => updateNumber(3)}>3</button>
+          <button onClick={() => updateNumber(4)}>4</button>
+          <button onClick={() => updateNumber(5)}>5</button>
+          <button onClick={() => updateNumber(6)}>6</button>
+          <button onClick={() => updateNumber(7)}>7</button>
+          <button onClick={() => updateNumber(8)}>8</button>
+          <button onClick={() => updateNumber(9)}>9</button>
+          <button onClick={() => updateNumber(0)}>0</button>
+          <button onClick={() => clearNumber()}>Clear</button>
         </div>
       </div>
 
       <div className="panel">
-        <p>+</p>
+        <p>{operation}</p>
         <div className="numbers">
-          <button>+</button>
-          <button>-</button>
-          <button>*</button>
-          <button>÷</button>
+          <button onClick={() => addToSum()}>+</button>
+          <button onClick={() => subtractSum()}>-</button>
+          <button onClick={() => multiplySum()}>*</button>
+          <button onClick={() => divSum()}>÷</button>
         </div>
       </div>
 
       <div className="panel">
-        <p>0</p>
+        <p>{otherNumber}</p>
         <div className="numbers">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button>0</button>
-          <button>Clear</button>
+          <button onClick={() => updateOtehrNumber(1)}>1</button>
+          <button onClick={() => updateOtehrNumber(2)}>2</button>
+          <button onClick={() => updateOtehrNumber(3)}>3</button>
+          <button onClick={() => updateOtehrNumber(4)}>4</button>
+          <button onClick={() => updateOtehrNumber(5)}>5</button>
+          <button onClick={() => updateOtehrNumber(6)}>6</button>
+          <button onClick={() => updateOtehrNumber(7)}>7</button>
+          <button onClick={() => updateOtehrNumber(8)}>8</button>
+          <button onClick={() => updateOtehrNumber(9)}>9</button>
+          <button onClick={() => updateOtehrNumber(0)}>0</button>
+          <button onClick={() => clearOtherNumber()}>Clear</button>
         </div>
       </div>
       <div className="panel answer">
-        <p>0</p>
+        <p>{result}</p>
         <div>
           <button>=</button>
         </div>
